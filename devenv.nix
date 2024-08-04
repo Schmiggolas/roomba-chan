@@ -3,7 +3,6 @@
 {
     packages = with pkgs; [
       godot_4
-      blender
     ];
 
     processes = {
