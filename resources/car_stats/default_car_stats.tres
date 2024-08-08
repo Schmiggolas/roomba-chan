@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CarConfiguration" load_steps=2 format=3 uid="uid://cav5aux1pvjj5"]
+
+[ext_resource type="Script" path="res://resources/car_stats/car_stats.gd" id="1_vg5d4"]
+
+[resource]
+script = ExtResource("1_vg5d4")
+max_steer_limit = 0.2
+min_steer_limit = 0.02
+min_steer_velocity = 0.0
+max_steer_velocity = 20.0
+steer_speed = 1.0
+forwards_engine_force_value = 20
+backwards_engine_force_value = 10
+brake_force_value = 0.7

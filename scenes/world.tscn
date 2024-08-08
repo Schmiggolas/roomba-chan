@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c540lbb8880ye"]
+[gd_scene load_steps=9 format=3 uid="uid://c540lbb8880ye"]
 
 [ext_resource type="PackedScene" uid="uid://b5arusx58sc01" path="res://scenes/player/player.tscn" id="1_eugfv"]
 [ext_resource type="Script" path="res://scenes/camera/FollowCamera3D.gd" id="2_hns4g"]
+[ext_resource type="PackedScene" uid="uid://cv1kc2e0g28cx" path="res://models/AmericanFridge.fbx" id="3_ss0xs"]
+[ext_resource type="PackedScene" uid="uid://bvdyedefbht50" path="res://models/BathroomSink.fbx" id="4_chop3"]
+[ext_resource type="PackedScene" uid="uid://ph23qek7ehig" path="res://models/Armchair2.fbx" id="5_04dlx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqtug"]
 size = Vector3(100, 0.5, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru0dc"]
+albedo_color = Color(0.65098, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o7gtw"]
 material = SubResource("StandardMaterial3D_ru0dc")
@@ -25,8 +29,16 @@ mesh = SubResource("BoxMesh_o7gtw")
 [node name="Player" parent="." instance=ExtResource("1_eugfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63141, 0)
 
-[node name="FollowCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("node_to_follow", "node_to_look_at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 2)
+[node name="Root Scene" parent="." instance=ExtResource("3_ss0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 17)
+
+[node name="Root Scene2" parent="." instance=ExtResource("4_chop3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 32)
+
+[node name="Root Scene3" parent="." instance=ExtResource("5_04dlx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 13)
+
+[node name="SmoothedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_hns4g")
-node_to_follow = NodePath("../Player")
-node_to_look_at = NodePath("../Player")
+smoothing_speed = 4.0
+player = NodePath("../Player")

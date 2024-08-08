@@ -1,19 +1,17 @@
-class_name FollowCamera3D extends Camera3D
+class_name SmoothedCamera3D extends Camera3D
 
-@export var node_to_follow : Node
-var camera_follow_target : Node
-@export var node_to_look_at : Node
+@export var smoothing_speed: float = 5.0
 
+@export var player: Node3D 
+var camera_target : Node3D
 
 func _ready():
-	if(node_to_follow == null):
-		push_error("Object to follow is null!")
-	camera_follow_target = node_to_follow.get_node("CameraTarget")
-
+	camera_target = player.get_node("%CameraTarget")
 
 
 func _physics_process(delta):
-	var target_position = camera_follow_target.position
-	position = target_position
-	look_at(node_to_look_at.position,Vector3.UP)
+	var target_position = camera_target.global_position
 	
+	var new_position = global_position.lerp(target_position, smoothing_speed * delta)
+	
+	look_at_from_position(new_position,player.position,Vector3.UP)
