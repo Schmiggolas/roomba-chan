@@ -1,44 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://c540lbb8880ye"]
+[gd_scene load_steps=7 format=3 uid="uid://44wya7kmhmsb"]
 
-[ext_resource type="PackedScene" uid="uid://b5arusx58sc01" path="res://scenes/player/player.tscn" id="1_eugfv"]
-[ext_resource type="Script" path="res://scenes/camera/FollowCamera3D.gd" id="2_hns4g"]
-[ext_resource type="PackedScene" uid="uid://cv1kc2e0g28cx" path="res://models/AmericanFridge.fbx" id="3_ss0xs"]
-[ext_resource type="PackedScene" uid="uid://bvdyedefbht50" path="res://models/BathroomSink.fbx" id="4_chop3"]
-[ext_resource type="PackedScene" uid="uid://ph23qek7ehig" path="res://models/Armchair2.fbx" id="5_04dlx"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jqtug"]
-size = Vector3(100, 0.5, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru0dc"]
-albedo_color = Color(0.65098, 1, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o7gtw"]
-material = SubResource("StandardMaterial3D_ru0dc")
-size = Vector3(100, 0.5, 100)
+[ext_resource type="PackedScene" uid="uid://cxmaq3yrucyhe" path="res://scenes/environment/structure/floor/floor.tscn" id="1_b24ew"]
+[ext_resource type="PackedScene" uid="uid://b5arusx58sc01" path="res://scenes/player/player.tscn" id="2_spbxw"]
+[ext_resource type="Script" path="res://scenes/camera/FollowCamera3D.gd" id="3_bktav"]
+[ext_resource type="PackedScene" uid="uid://c6v4eoutuxm44" path="res://scenes/environment/objects/interior/fridge/fridge.tscn" id="4_x44bj"]
+[ext_resource type="PackedScene" uid="uid://dfek4g18mxkkr" path="res://scenes/environment/objects/interior/bookshelf/bookshelf.tscn" id="5_p62hh"]
+[ext_resource type="PackedScene" uid="uid://d2m1mmcc7amji" path="res://scenes/environment/objects/interior/stool/stool.tscn" id="6_jrwdh"]
 
 [node name="World" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" parent="." instance=ExtResource("1_b24ew")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_jqtug")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_o7gtw")
-
-[node name="Player" parent="." instance=ExtResource("1_eugfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63141, 0)
-
-[node name="Root Scene" parent="." instance=ExtResource("3_ss0xs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 17)
-
-[node name="Root Scene2" parent="." instance=ExtResource("4_chop3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 32)
-
-[node name="Root Scene3" parent="." instance=ExtResource("5_04dlx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 13)
+[node name="Player" parent="." instance=ExtResource("2_spbxw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.494682, 0)
 
 [node name="SmoothedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_hns4g")
-smoothing_speed = 4.0
+script = ExtResource("3_bktav")
 player = NodePath("../Player")
+
+[node name="Fridge" parent="." instance=ExtResource("4_x44bj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 1)
+
+[node name="Bookshelf" parent="." instance=ExtResource("5_p62hh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64362, 0.0500002, 6.85913)
+
+[node name="Stool" parent="." instance=ExtResource("6_jrwdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.93049, 0.752131, -2.77885)

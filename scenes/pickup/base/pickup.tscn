@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://bs2f0k8amqyv4"]
+
+[ext_resource type="Script" path="res://scenes/pickup/base/pickup.gd" id="1_kw82j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6puij"]
+radius = 0.3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g6qsl"]
+
+[sub_resource type="Curve" id="Curve_px6qo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.128079, 1), 0.0, 0.0, 0, 0, Vector2(0.871921, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6r72g"]
+curve = SubResource("Curve_px6qo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ip3us"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+angle_min = -10.0
+angle_max = 10.0
+angle_curve = SubResource("CurveTexture_g6qsl")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -0.2
+linear_accel_max = 0.2
+radial_accel_min = 0.02
+radial_accel_max = 0.05
+tangential_accel_min = 0.2
+tangential_accel_max = 0.3
+damping_max = 0.2
+scale_curve = SubResource("CurveTexture_6r72g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o2xl"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.196078)
+emission_enabled = true
+emission = Color(1, 1, 0.223529, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qs4q2"]
+material = SubResource("StandardMaterial3D_2o2xl")
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="Animation" id="Animation_y7l2g"]
+resource_name = "pickup_bob"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ModelParent:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 6.28319, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ModelParent:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, 0.25, 0), Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvatq"]
+_data = {
+"pickup_bob": SubResource("Animation_y7l2g")
+}
+
+[node name="Pickup" type="Node3D"]
+script = ExtResource("1_kw82j")
+
+[node name="PickupZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.172715, 0)
+shape = SubResource("SphereShape3D_6puij")
+
+[node name="ModelParent" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0.1, 0)
+
+[node name="ParticleSystem" type="GPUParticles3D" parent="ModelParent"]
+amount = 30
+visibility_aabb = AABB(-0.354444, -0.416864, -0.353297, 0.708889, 0.833728, 0.706594)
+process_material = SubResource("ParticleProcessMaterial_ip3us")
+draw_pass_1 = SubResource("BoxMesh_qs4q2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ModelParent"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
+light_energy = 0.2
+omni_range = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cvatq")
+}
+autoplay = "pickup_bob"
+
+[connection signal="body_entered" from="PickupZone" to="." method="_on_pickup_zone_body_entered"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxmaq3yrucyhe"]
+
+[ext_resource type="Texture2D" uid="uid://ba03vno55mdyb" path="res://scenes/environment/structure/floor/floor.jpg" id="1_y4na0"]
+[ext_resource type="Texture2D" uid="uid://bhyicce1rtj3" path="res://scenes/environment/structure/floor/floor_normal.png" id="2_x2a62"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_70y04"]
+size = Vector3(150, 0.1, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gecg"]
+albedo_texture = ExtResource("1_y4na0")
+normal_enabled = true
+normal_texture = ExtResource("2_x2a62")
+uv1_scale = Vector3(40, 40, 40)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uo76u"]
+material = SubResource("StandardMaterial3D_8gecg")
+size = Vector2(150, 150)
+
+[node name="Floor" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_70y04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_uo76u")
