@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://44wya7kmhmsb"]
+[gd_scene load_steps=8 format=3 uid="uid://44wya7kmhmsb"]
 
 [ext_resource type="PackedScene" uid="uid://cxmaq3yrucyhe" path="res://scenes/environment/structure/floor/floor.tscn" id="1_b24ew"]
 [ext_resource type="PackedScene" uid="uid://b5arusx58sc01" path="res://scenes/player/player.tscn" id="2_spbxw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6v4eoutuxm44" path="res://scenes/environment/objects/interior/fridge/fridge.tscn" id="4_x44bj"]
 [ext_resource type="PackedScene" uid="uid://dfek4g18mxkkr" path="res://scenes/environment/objects/interior/bookshelf/bookshelf.tscn" id="5_p62hh"]
 [ext_resource type="PackedScene" uid="uid://d2m1mmcc7amji" path="res://scenes/environment/objects/interior/stool/stool.tscn" id="6_jrwdh"]
+[ext_resource type="PackedScene" uid="uid://dew4d5664pnkm" path="res://scenes/ui/speedometer/speedometer.tscn" id="7_jciwp"]
 
 [node name="World" type="Node3D"]
 
@@ -19,6 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.494682, 0)
 
 [node name="SmoothedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_bktav")
+smoothing_speed = 10.0
 player = NodePath("../Player")
 
 [node name="Fridge" parent="." instance=ExtResource("4_x44bj")]
@@ -29,3 +31,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64362, 0.0500002, 6.85913)
 
 [node name="Stool" parent="." instance=ExtResource("6_jrwdh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.93049, 0.752131, -2.77885)
+
+[node name="UI" type="ReferenceRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Speedometer" parent="UI" node_paths=PackedStringArray("vehicle_to_track") instance=ExtResource("7_jciwp")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(0.3, 0)
+vehicle_to_track = NodePath("../../Player")

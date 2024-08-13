@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5arusx58sc01"]
+[gd_scene load_steps=8 format=3 uid="uid://b5arusx58sc01"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8an24"]
 [ext_resource type="Resource" uid="uid://cav5aux1pvjj5" path="res://resources/car_stats/default_car_stats.tres" id="2_qcwob"]
 [ext_resource type="PackedScene" uid="uid://bhypetewyytni" path="res://scenes/player/roomba-base.glb" id="3_xt3c3"]
+[ext_resource type="Script" path="res://scenes/player/CameraTarget.gd" id="4_tksj8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wc2js"]
 height = 0.04
@@ -39,8 +40,9 @@ wheel_radius = 0.03
 wheel_rest_length = 0.01
 wheel_friction_slip = 1.0
 suspension_travel = 0.01
-suspension_stiffness = 300.0
-damping_compression = 0.95
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
 damping_relaxation = 0.99
 
 [node name="Mesh" type="MeshInstance3D" parent="WheelFrontLeft"]
@@ -56,8 +58,9 @@ wheel_radius = 0.03
 wheel_rest_length = 0.01
 wheel_friction_slip = 1.0
 suspension_travel = 0.01
-suspension_stiffness = 300.0
-damping_compression = 0.95
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
 damping_relaxation = 0.99
 
 [node name="Mesh2" type="MeshInstance3D" parent="WheelFrontRight"]
@@ -71,10 +74,11 @@ use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_radius = 0.03
 wheel_rest_length = 0.01
-wheel_friction_slip = 1.0
+wheel_friction_slip = 0.98
 suspension_travel = 0.01
-suspension_stiffness = 300.0
-damping_compression = 0.95
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
 damping_relaxation = 0.99
 
 [node name="Mesh3" type="MeshInstance3D" parent="WheelBackLeft"]
@@ -88,10 +92,11 @@ use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_radius = 0.03
 wheel_rest_length = 0.01
-wheel_friction_slip = 1.0
+wheel_friction_slip = 0.98
 suspension_travel = 0.01
-suspension_stiffness = 300.0
-damping_compression = 0.95
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
 damping_relaxation = 0.99
 
 [node name="Mesh4" type="MeshInstance3D" parent="WheelBackRight"]
@@ -99,6 +104,9 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 mesh = SubResource("CylinderMesh_gj87g")
 skeleton = NodePath("../../WheelFrontLeft")
 
-[node name="CameraTarget" type="Node3D" parent="."]
+[node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.5)
+script = ExtResource("4_tksj8")
+max_offset = Vector3(0, -0.75, 1.5)
+player = NodePath("..")
