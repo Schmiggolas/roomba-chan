@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ognjvsgn03j8"
-path="res://.godot/imported/Cabinet1.fbx-eaa3967b35d0a86e2b676180e2180684.scn"
+uid="uid://d16jb3whjkjm7"
+path="res://.godot/imported/PepperShaker.glb-0c893c635fd25376e7099c98327d0c32.scn"
 
 [deps]
 
-source_file="res://scenes/environment/objects/interior/Cabinet1.fbx"
-dest_files=["res://.godot/imported/Cabinet1.fbx-eaa3967b35d0a86e2b676180e2180684.scn"]
+source_file="res://scenes/environment/objects/food/PepperShaker.glb"
+dest_files=["res://.godot/imported/PepperShaker.glb-0c893c635fd25376e7099c98327d0c32.scn"]
 
 [params]
 

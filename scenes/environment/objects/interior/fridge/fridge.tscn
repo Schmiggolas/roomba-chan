@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://d4fabb44s4ybn" path="res://scenes/environment/objects/interior/fridge/AmericanFridge.fbx" id="1_061to"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fnwh2"]
-size = Vector3(0.748764, 0.0467529, 0.750122)
+[sub_resource type="BoxShape3D" id="BoxShape3D_srfjt"]
+size = Vector3(0.749329, 1.87939, 0.784546)
 
 [node name="Fridge" instance=ExtResource("1_061to")]
 
@@ -12,5 +12,5 @@ size = Vector3(0.748764, 0.0467529, 0.750122)
 [node name="MainBody" type="StaticBody3D" parent="Collision" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/MainBody" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00178528, 0.963867, 0.013916)
-shape = SubResource("BoxShape3D_fnwh2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00144911, 0.939192, 0.0126343)
+shape = SubResource("BoxShape3D_srfjt")

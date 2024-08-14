@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://44wya7kmhmsb"]
+[gd_scene load_steps=10 format=3 uid="uid://44wya7kmhmsb"]
 
 [ext_resource type="PackedScene" uid="uid://cxmaq3yrucyhe" path="res://scenes/environment/structure/floor/floor.tscn" id="1_b24ew"]
-[ext_resource type="PackedScene" uid="uid://b5arusx58sc01" path="res://scenes/player/player.tscn" id="2_spbxw"]
+[ext_resource type="PackedScene" uid="uid://d32yg28jsg662" path="res://scenes/player/player_vehicle.tscn" id="3_3us40"]
 [ext_resource type="Script" path="res://scenes/camera/FollowCamera3D.gd" id="3_bktav"]
 [ext_resource type="PackedScene" uid="uid://c6v4eoutuxm44" path="res://scenes/environment/objects/interior/fridge/fridge.tscn" id="4_x44bj"]
 [ext_resource type="PackedScene" uid="uid://dfek4g18mxkkr" path="res://scenes/environment/objects/interior/bookshelf/bookshelf.tscn" id="5_p62hh"]
 [ext_resource type="PackedScene" uid="uid://d2m1mmcc7amji" path="res://scenes/environment/objects/interior/stool/stool.tscn" id="6_jrwdh"]
 [ext_resource type="PackedScene" uid="uid://dew4d5664pnkm" path="res://scenes/ui/speedometer/speedometer.tscn" id="7_jciwp"]
+[ext_resource type="PackedScene" uid="uid://b367l6obwch11" path="res://scenes/environment/objects/interior/cabinet1/cabinet_1.tscn" id="8_kxp8t"]
+[ext_resource type="PackedScene" uid="uid://bbej0j1anc7x6" path="res://scenes/pickup/basic_coin_pickup.tscn" id="9_7ylfc"]
 
 [node name="World" type="Node3D"]
 
@@ -15,16 +17,12 @@
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0)
 
-[node name="Player" parent="." instance=ExtResource("2_spbxw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.494682, 0)
-
 [node name="SmoothedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_bktav")
 smoothing_speed = 10.0
-player = NodePath("../Player")
+player = NodePath("../Vehicle")
 
-[node name="Fridge" parent="." instance=ExtResource("4_x44bj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 1)
+[node name="Vehicle" parent="." instance=ExtResource("3_3us40")]
 
 [node name="Bookshelf" parent="." instance=ExtResource("5_p62hh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64362, 0.0500002, 6.85913)
@@ -51,4 +49,13 @@ offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(0.3, 0)
-vehicle_to_track = NodePath("../../Player")
+vehicle_to_track = NodePath("../../Vehicle")
+
+[node name="Fridge" parent="." instance=ExtResource("4_x44bj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.74672, 0.05, 1.04932)
+
+[node name="Cabinet1" parent="." instance=ExtResource("8_kxp8t")]
+transform = Transform3D(-0.545239, 0, -0.838281, 0, 1, 0, 0.838281, 0, -0.545239, -0.768883, 0.05, 4.99258)
+
+[node name="Pickup" parent="." instance=ExtResource("9_7ylfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)

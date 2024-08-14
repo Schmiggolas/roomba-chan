@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ff5iptmq8yag" path="res://scenes/environment/objects/interior/bookshelf/Bookshelf.fbx" id="1_0mshj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bg3g5"]
-size = Vector3(1.60223, 2.05231, 0.385498)
+size = Vector3(1.60223, 2.12856, 0.385498)
 
 [node name="Bookshelf" instance=ExtResource("1_0mshj")]
 
@@ -12,5 +12,5 @@ size = Vector3(1.60223, 2.05231, 0.385498)
 [node name="MainBody" type="StaticBody3D" parent="Collision" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/MainBody" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15527e-05, 1.10159, 0.00280762)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15527e-05, 1.06347, 0.00280762)
 shape = SubResource("BoxShape3D_bg3g5")

@@ -1,4 +1,4 @@
-class_name VehicleController
+class_name Vehicle
 extends VehicleBody3D
 
 @export var car_stats : CarStats
@@ -8,8 +8,6 @@ var forward_velocity
 
 func _physics_process(delta):
 	forward_velocity = global_transform.basis.z.dot(linear_velocity)
-	steer_target = Input.get_action_strength("steer_left") - Input.get_action_strength("steer_right")
-	acceleration_target = Input.get_axis("backwards","forwards")
 	
 	var adaptive_steer_limit = remap(
 		clamp(linear_velocity.length(), car_stats.min_steer_velocity, car_stats.max_steer_velocity),
@@ -19,6 +17,7 @@ func _physics_process(delta):
 		car_stats.min_steer_limit)
 		
 	steer_target *= adaptive_steer_limit
+	
 	if acceleration_target > 0:
 		engine_force = car_stats.forwards_engine_force_value
 	else:

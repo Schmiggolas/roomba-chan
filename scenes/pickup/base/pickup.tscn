@@ -1,11 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs2f0k8amqyv4"]
+[gd_scene load_steps=12 format=3 uid="uid://bs2f0k8amqyv4"]
 
 [ext_resource type="Script" path="res://scenes/pickup/base/pickup.gd" id="1_kw82j"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6puij"]
-radius = 0.3
+radius = 0.214531
+
+[sub_resource type="Curve" id="Curve_xw6sq"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_g6qsl"]
+curve = SubResource("Curve_xw6sq")
 
 [sub_resource type="Curve" id="Curve_px6qo"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.128079, 1), 0.0, 0.0, 0, 0, Vector2(0.871921, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

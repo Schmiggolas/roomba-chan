@@ -3,5 +3,5 @@ extends PickupEffect
 
 @export var points : int
 
-func apply_effect():
-	print("Added %s points" % str(points))
+func apply_effect(vehicle : Vehicle):
+	print("Added %s points to player" % str(points))
