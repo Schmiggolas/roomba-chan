@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="PointPickupEffect" load_steps=2 format=3 uid="uid://dcwa1g52icnsi"]
-
-[ext_resource type="Script" path="res://resources/pickup_effects/types/point_pickup_effect.gd" id="1_wwx4l"]
-
-[resource]
-script = ExtResource("1_wwx4l")
-points = 10

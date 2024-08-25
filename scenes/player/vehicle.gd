@@ -2,9 +2,11 @@ class_name Vehicle
 extends VehicleBody3D
 
 @export var car_stats : CarStats
+
 var steer_target : float = 0
 var acceleration_target : float = 0
-var forward_velocity
+var forward_velocity : float
+
 
 func _physics_process(delta):
 	forward_velocity = global_transform.basis.z.dot(linear_velocity)
