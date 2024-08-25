@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5arusx58sc01"]
+
+[ext_resource type="Script" path="res://scenes/vehicle/vehicle.gd" id="1_ka8w7"]
+[ext_resource type="Script" path="res://scenes/vehicle/vehicle_stats.gd" id="2_ehg7g"]
+[ext_resource type="PackedScene" uid="uid://bhypetewyytni" path="res://scenes/vehicle/roomba-base.glb" id="3_mk5du"]
+[ext_resource type="Script" path="res://scenes/vehicle/CameraTarget.gd" id="4_juj4i"]
+[ext_resource type="Script" path="res://scenes/effects/EffectApplicator.gd" id="5_sdste"]
+
+[sub_resource type="Resource" id="Resource_487fc"]
+script = ExtResource("2_ehg7g")
+max_steer_limit = 0.2
+min_steer_limit = 0.02
+min_steer_velocity = 0.0
+max_steer_velocity = 20.0
+steer_speed = 1.0
+forwards_engine_force_value = 5
+backwards_engine_force_value = 2
+brake_force_value = 0.09
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wc2js"]
+height = 0.04
+radius = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wvdp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gj87g"]
+material = SubResource("StandardMaterial3D_0wvdp")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.02
+rings = 1
+
+[node name="Vehicle" type="VehicleBody3D" groups=["Player"]]
+collision_priority = 99999.0
+mass = 4.0
+script = ExtResource("1_ka8w7")
+vehicle_stats = SubResource("Resource_487fc")
+
+[node name="Body" parent="." instance=ExtResource("3_mk5du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0445913, 0)
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024147, 0)
+shape = SubResource("CylinderShape3D_wc2js")
+
+[node name="WheelFrontLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.01, 0.07)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.03
+wheel_rest_length = 0.01
+wheel_friction_slip = 1.0
+suspension_travel = 0.01
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
+damping_relaxation = 0.99
+
+[node name="Mesh" type="MeshInstance3D" parent="WheelFrontLeft"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_gj87g")
+
+[node name="WheelFrontRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.01, 0.07)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.03
+wheel_rest_length = 0.01
+wheel_friction_slip = 1.0
+suspension_travel = 0.01
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
+damping_relaxation = 0.99
+
+[node name="Mesh2" type="MeshInstance3D" parent="WheelFrontRight"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_gj87g")
+skeleton = NodePath("../../WheelFrontLeft")
+
+[node name="WheelBackLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.01, -0.07)
+use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.03
+wheel_rest_length = 0.01
+wheel_friction_slip = 0.98
+suspension_travel = 0.01
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
+damping_relaxation = 0.99
+
+[node name="Mesh3" type="MeshInstance3D" parent="WheelBackLeft"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_gj87g")
+skeleton = NodePath("../../WheelFrontLeft")
+
+[node name="WheelBackRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.01, -0.07)
+use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.03
+wheel_rest_length = 0.01
+wheel_friction_slip = 0.98
+suspension_travel = 0.01
+suspension_stiffness = 350.0
+suspension_max_force = 500.0
+damping_compression = 0.98
+damping_relaxation = 0.99
+
+[node name="Mesh4" type="MeshInstance3D" parent="WheelBackRight"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_gj87g")
+skeleton = NodePath("../../WheelFrontLeft")
+
+[node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.5)
+script = ExtResource("4_juj4i")
+max_offset = Vector3(0, -0.75, 1.5)
+player = NodePath("..")
+
+[node name="EffectApplicator" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_sdste")

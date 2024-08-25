@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bncrx5g478b3n"]
+
+[ext_resource type="PackedScene" uid="uid://tit51aa81vet" path="res://scenes/environment/food/apple.fbx" id="1_18620"]
+
+[node name="apple" instance=ExtResource("1_18620")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="Apple" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
