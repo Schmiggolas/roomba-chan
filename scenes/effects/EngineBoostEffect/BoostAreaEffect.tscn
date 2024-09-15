@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dofl1inqyu0l2"]
+
+[ext_resource type="Script" path="res://scenes/effects/EngineBoostEffect/EngineBoostEffect.gd" id="1_tpsdf"]
+
+[node name="BoostAreaEffect" type="Node"]
+script = ExtResource("1_tpsdf")
+forwards_engine_force_bonus = 3.0
