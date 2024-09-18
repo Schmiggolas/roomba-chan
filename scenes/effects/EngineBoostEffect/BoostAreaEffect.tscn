@@ -4,4 +4,4 @@
 
 [node name="BoostAreaEffect" type="Node"]
 script = ExtResource("1_tpsdf")
-forwards_engine_force_bonus = 3.0
+forwards_engine_force_bonus = 10.0

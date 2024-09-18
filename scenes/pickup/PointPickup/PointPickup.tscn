@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjgyngg6ft5yg"]
+
+[ext_resource type="PackedScene" uid="uid://bs2f0k8amqyv4" path="res://scenes/pickup/base/pickup.tscn" id="1_2id57"]
+[ext_resource type="Script" path="res://scenes/effects/CoinPickupEffect/PointPickupEffect.gd" id="2_s81my"]
+[ext_resource type="PackedScene" uid="uid://tit51aa81vet" path="res://scenes/environment/food/apple.fbx" id="2_v6ysy"]
+
+[sub_resource type="Resource" id="Resource_0vb1y"]
+resource_local_to_scene = true
+script = ExtResource("2_s81my")
+points = 10
+
+[node name="Pickup" instance=ExtResource("1_2id57")]
+effect = SubResource("Resource_0vb1y")
+
+[node name="ModelParent" parent="." index="1"]
+transform = Transform3D(0.975697, 0, 0.219123, 0, 1, 0, -0.219123, 0, 0.975697, 0, 0.101957, 0)
+
+[node name="Root Scene" parent="ModelParent" index="2" instance=ExtResource("2_v6ysy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0433352, 0)
