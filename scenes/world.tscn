@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://44wya7kmhmsb"]
+[gd_scene load_steps=9 format=3 uid="uid://44wya7kmhmsb"]
 
 [ext_resource type="PackedScene" uid="uid://cxmaq3yrucyhe" path="res://scenes/environment/structure/floor/floor.tscn" id="1_b24ew"]
 [ext_resource type="PackedScene" uid="uid://d32yg28jsg662" path="res://scenes/vehicle/player/player_vehicle.tscn" id="3_3us40"]
 [ext_resource type="Script" path="res://scenes/camera/FollowCamera3D.gd" id="3_bktav"]
 [ext_resource type="PackedScene" uid="uid://bxbfiqlw0o0yb" path="res://scenes/environment/BoostArea.tscn" id="6_eyslm"]
 [ext_resource type="PackedScene" uid="uid://cjgyngg6ft5yg" path="res://scenes/pickup/PointPickup/PointPickup.tscn" id="6_ybitc"]
+[ext_resource type="Script" path="res://scenes/effects/CoinPickupEffect/PointPickupEffect.gd" id="7_gqb2j"]
 [ext_resource type="PackedScene" uid="uid://dew4d5664pnkm" path="res://scenes/ui/speedometer/speedometer.tscn" id="7_jciwp"]
+
+[sub_resource type="Resource" id="Resource_krdud"]
+resource_local_to_scene = true
+script = ExtResource("7_gqb2j")
+points = 10
 
 [node name="World" type="Node3D"]
 
@@ -48,3 +54,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62248, 0.0499992, 3.72231)
 
 [node name="Pickup" parent="." instance=ExtResource("6_ybitc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92142, 0.020527, 0)
+effect = SubResource("Resource_krdud")
